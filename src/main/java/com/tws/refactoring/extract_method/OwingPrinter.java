@@ -9,21 +9,30 @@ public class OwingPrinter {
     void printOwing(String name, List<Order> orders) {
         Iterator<Order> elements = orders.iterator();
         double outstanding = 0.0;
+        printBanner();
+        printDetails(name, getOutstanding(elements, outstanding));
+    }
 
-        // print banner
-        System.out.println ("*****************************");
-        System.out.println ("****** Customer totals ******");
-        System.out.println ("*****************************");
+    private void printDetails(String name, double outstanding) {
+        // print details
+        System.out.print("name: " + name+"\n");
+        System.out.print("amount: " + outstanding+"\n");
+    }
 
+    private double getOutstanding(Iterator<Order> elements, double outstanding) {
         // print owings
         while (elements.hasNext()) {
             Order each = (Order) elements.next();
             outstanding += each.getAmount();
         }
+        return outstanding;
+    }
 
-        // print details
-        System.out.println("name: " + name);
-        System.out.println("amount: " + outstanding);
+    private void printBanner() {
+        // print banner
+        System.out.print ("*****************************\n");
+        System.out.print ("****** Customer totals ******\n");
+        System.out.print ("*****************************\n");
     }
 }
 
